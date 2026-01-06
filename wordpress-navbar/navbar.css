@@ -1,0 +1,123 @@
+:root {
+  --navbar-bg: #0f172a;
+  --navbar-text: #f8fafc;
+  --navbar-accent: #38bdf8;
+}
+
+.wp-navbar {
+  background: var(--navbar-bg);
+  color: var(--navbar-text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  position: relative;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.wp-navbar__brand {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: inherit;
+}
+
+.wp-navbar__toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.4rem;
+  background: rgba(248, 250, 252, 0.1);
+  border: 1px solid rgba(248, 250, 252, 0.15);
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.wp-navbar__toggle:hover,
+.wp-navbar__toggle:focus-visible {
+  background: rgba(248, 250, 252, 0.2);
+  outline: none;
+}
+
+.wp-navbar__icon,
+.wp-navbar__label {
+  pointer-events: none;
+}
+
+.wp-navbar__menu {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.wp-navbar__menu a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.4rem 0;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.wp-navbar__menu a:hover,
+.wp-navbar__menu a:focus-visible,
+.wp-navbar__menu .current-menu-item > a {
+  color: var(--navbar-accent);
+}
+
+.wp-navbar__menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: var(--navbar-accent);
+  transition: transform 0.2s ease;
+}
+
+.wp-navbar__menu a:hover::after,
+.wp-navbar__menu a:focus-visible::after,
+.wp-navbar__menu .current-menu-item > a::after {
+  transform: scaleX(1);
+}
+
+@media (max-width: 768px) {
+  .wp-navbar__toggle {
+    display: inline-flex;
+  }
+
+  .wp-navbar__menu-wrapper {
+    position: absolute;
+    inset: calc(100% - 0.25rem) 1rem auto 1rem;
+    background: rgba(15, 23, 42, 0.97);
+    border: 1px solid rgba(248, 250, 252, 0.08);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    display: none;
+    flex-direction: column;
+    gap: 0.6rem;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+    z-index: 10;
+  }
+
+  .wp-navbar.is-open .wp-navbar__menu-wrapper {
+    display: flex;
+  }
+
+  .wp-navbar__menu {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+}
